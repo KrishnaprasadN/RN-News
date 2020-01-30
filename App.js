@@ -27,13 +27,27 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import NewsProvider from './src/network/NewsProvider';
+
 //const App: () => React$Node = () => {
 class App extends Component {
-  componentDidMount() {
+  /*componentDidMount() {
     SplashScreen.hide();
+  }*/
+
+  async getnews() {
+    // get the top news
+    var newsItems = await NewsProvider.getTopNews();
+    console.log(JSON.stringify(newsItems))
+
+    // get the news details
+    var newsDetail = await NewsProvider.getNewsDetail(1);
+    console.log(JSON.stringify(newsDetail))
   }
+
   render() {
     SplashScreen.hide();
+    this.getnews()
 
     return (
       <>
