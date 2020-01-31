@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import HeaderComponent from './HeaderComponent';
 
 export default class HomeComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: "Home 123 Screen",
+            title: "Home Screen",
         };
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <HeaderComponent title={this.props.title}/>
-                <Text>
+                <Text style={styles.titleText}>
                     {this.state.title}
                 </Text>
             </View>
@@ -32,5 +30,7 @@ const styles = StyleSheet.create({
     titleText: {
         fontSize: 20,
         fontWeight: 'bold',
+        height:500,
+        alignContent: 'center',
     },
 });
