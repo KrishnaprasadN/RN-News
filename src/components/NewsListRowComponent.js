@@ -26,12 +26,11 @@ export default class NewsListRowComponent extends Component {
                     cornerRadius={5}
                     style={styles.cardViewStyle}>
 
-                    <Text style={styles.newsTitle}> {this.props.title} </Text>
+                    <Text style={styles.newsTitle} numberOfLines={2}> {this.props.title} </Text>
                     <Text style={styles.newsDate}> {this.props.newsItem.published} </Text>
 
                 </CardView>
             </View>
-            
         );
     }
 }
@@ -46,17 +45,17 @@ const styles = StyleSheet.create({
     },
     cardViewStyle: {
         alignSelf: 'stretch',
-        height: 130,
-        alignContent: 'space-around'
+        height: 100,
+        justifyContent: 'space-evenly',
     },
     newsTitle: {
         fontSize: 18,
         color: '#000',
         textAlign: 'left',
-        margin:5
+        margin:3
     },
     newsDate: {
-        fontSize: 18,
+        fontSize: 14,
         color: '#000',
         textAlign: 'left',
         margin:5
