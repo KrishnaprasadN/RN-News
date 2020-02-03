@@ -9,11 +9,7 @@ export default class HomeComponent extends Component {
         super(props);
         this.state = {
             title: "Home Screen",
-            news: [
-                { key: 'Devin 1' },
-                { key: 'Dan' },
-                { key: 'Dominic' },
-            ]
+            news: [ ]
         };
     }
 
@@ -24,7 +20,6 @@ export default class HomeComponent extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <SpaceComponent />
                 <FlatList
                     data={this.state.news}
                     renderItem={({ item }) =>
