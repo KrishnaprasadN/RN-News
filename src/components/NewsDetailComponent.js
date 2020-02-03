@@ -11,11 +11,14 @@ export default class NewsDetailComponent extends Component {
     }
 
     render() {
+        const { navigation } = this.props;
+        var newsItem = navigation.getParam('item', {})
+
         return (
             <View style={styles.container}>
                 <SpaceComponent />
                 <Text style={styles.titleText}>
-                    {this.state.title}
+                    {newsItem.title}
                 </Text>
             </View>
         );

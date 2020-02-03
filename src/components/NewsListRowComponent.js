@@ -12,7 +12,7 @@ export default class NewsListRowComponent extends Component {
     render() {
         return (
             <Text style={styles.titleText}>
-                {this.state.title}
+                {this.props.title}
             </Text>
         );
     }
@@ -21,7 +21,6 @@ export default class NewsListRowComponent extends Component {
 const styles = StyleSheet.create({
     titleText: {
         fontSize: 20,
-        fontWeight: 'bold',
         height: 60
     },
 });
