@@ -39,20 +39,17 @@ target 'News' do
 
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
-  target 'NewsTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
 
-  use_native_modules!
-end
+  pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
 
-target 'News-tvOS' do
-  # Pods for News-tvOS
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
 
-  target 'News-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+  pod 'react-native-safe-area-context', :path => '../node_modules/react-native-safe-area-context'
+
+  pod 'RNScreens', :path => '../node_modules/react-native-screens'
+
+  pod 'RNCMaskedView', :path => '../node_modules/@react-native-community/masked-view'
 
 end
+
+

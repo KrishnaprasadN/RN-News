@@ -3,7 +3,7 @@ import { View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import SpaceComponent from './SpaceComponent'
 import NewsListRowComponent from './NewsListRowComponent';
 import NewsProvider from '../network/NewsProvider';
-
+import SplashScreen from 'react-native-splash-screen'
 import NetInfo from "@react-native-community/netinfo";
 import StorageUtil from '../utils/StorageUtil'
 const CONSTANTS = require('../utils/Constants');
@@ -19,6 +19,7 @@ export default class HomeComponent extends Component {
     }
 
     componentDidMount() {
+        SplashScreen.hide()
         this.fetchNewsWithNetworkCheck()
     }
 
