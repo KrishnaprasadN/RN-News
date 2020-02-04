@@ -3,7 +3,7 @@ import { View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import SpaceComponent from './SpaceComponent'
 import NewsListRowComponent from './NewsListRowComponent';
 import NewsProvider from '../network/NewsProvider';
-
+import SplashScreen from 'react-native-splash-screen'
 import NetInfo from "@react-native-community/netinfo";
 
 export default class HomeComponent extends Component {
@@ -17,6 +17,7 @@ export default class HomeComponent extends Component {
     }
 
     componentDidMount() {
+        SplashScreen.hide();
         NetInfo.fetch().then(state => {
             console.log("Connection type", state.type);
             if (state.isConnected) {
