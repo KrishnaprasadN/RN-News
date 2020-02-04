@@ -5,6 +5,8 @@ import NewsListRowComponent from './NewsListRowComponent';
 import NewsProvider from '../network/NewsProvider';
 
 import NetInfo from "@react-native-community/netinfo";
+import StorageUtil from '../utils/StorageUtil'
+const CONSTANTS = require('../utils/Constants');
 
 export default class HomeComponent extends Component {
     constructor(props) {
@@ -17,6 +19,10 @@ export default class HomeComponent extends Component {
     }
 
     componentDidMount() {
+        this.fetchNewsWithNetworkCheck()
+    }
+
+    fetchNewsWithNetworkCheck() {
         NetInfo.fetch().then(state => {
             console.log("Connection type", state.type);
             if (state.isConnected) {
@@ -24,6 +30,8 @@ export default class HomeComponent extends Component {
                 this.getnews()
             } else {
                 alert("You are not connected to Internet. Please connect and then retry.");
+                this.setState({ isFetching: false })
+                this.readNewsFromStorage()
             }
         });
     }
@@ -50,9 +58,11 @@ export default class HomeComponent extends Component {
     // get the top news
     async getnews() {
         var newsItems = await NewsProvider.getTopNews();
-        console.log(JSON.stringify(newsItems))
         this.setState({ news: newsItems })
         this.setState({ isFetching: false })
+
+        // store the news
+        StorageUtil.storeData(CONSTANTS.KEY_NEWS_LIST, JSON.stringify(newsItems));
     }
 
     // News Items row click listener, pass the News Item to the NewsDetailComponent
@@ -63,7 +73,12 @@ export default class HomeComponent extends Component {
     }
 
     onRefresh() {
-        this.setState({ isFetching: true }, function () { this.getnews() });
+        this.setState({ isFetching: true }, function () { this.fetchNewsWithNetworkCheck() });
+    }
+
+    async readNewsFromStorage() {
+        var newsItems = await StorageUtil.readData(CONSTANTS.KEY_NEWS_LIST);
+        this.setState({ news: JSON.parse(newsItems) })
     }
 }
 
