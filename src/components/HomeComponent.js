@@ -4,17 +4,27 @@ import SpaceComponent from './SpaceComponent'
 import NewsListRowComponent from './NewsListRowComponent';
 import NewsProvider from '../network/NewsProvider';
 
+import NetInfo from "@react-native-community/netinfo";
+
 export default class HomeComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
             title: "Home Screen",
-            news: [ ]
+            news: [],
         };
     }
 
     componentDidMount() {
-        this.getnews()
+        NetInfo.fetch().then(state => {
+            console.log("Connection type", state.type);
+            if(state.isConnected) {
+                console.log('Internet is connected');
+                this.getnews()
+            } else {
+                alert("You are not connected to Internet. Please connect and then retry.");
+            }
+          });
     }
 
     render() {

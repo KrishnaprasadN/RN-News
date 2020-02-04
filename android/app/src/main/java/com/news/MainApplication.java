@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.ReactApplication;
 import com.kishanjvaghela.cardview.RNCardViewPackage;
+import com.reactnativecommunity.netinfo.NetInfoPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.facebook.react.ReactNativeHost;
@@ -32,6 +33,7 @@ public class MainApplication extends Application implements ReactApplication {
                       new RNGestureHandlerPackage(),
                       new SafeAreaContextPackage(),
                       new RNCardViewPackage(),
+                      new NetInfoPackage(),
                       new SplashScreenReactPackage()  //here
               );
           }

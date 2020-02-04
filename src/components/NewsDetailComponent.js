@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, Button, Alert, TouchableOpacity, Share } from 'react-native';
 import CardView from 'react-native-cardview';
 const CONSTANTS = require('../utils/Constants');
 
@@ -40,19 +40,58 @@ export default class NewsDetailComponent extends Component {
                     </Text>
 
                 </CardView>
+                <View style={styles.footerStyle}>
+                    <TouchableOpacity onPress={() => this._onLiked()}>
+                        <Image
+                            source={require('../../images/like.png')}
+                            style={styles.footerImg} />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this._onShareClick(newsItem.title)}>
+                        <Image
+                            source={require('../../images/share.png')}
+                            style={styles.footerImg} />
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }
+
+    // News Items row click listener, pass the News Item to the NewsDetailComponent
+    _onLiked() {
+        Alert.alert('You Liked it')
+    }
+
+    _onShareClick(title) {
+        this.onShare(title)
+    }
+
+    onShare = async (title) => {
+        try {
+            const result = await Share.share({
+                message:
+                    title,
+            });
+
+            if (result.action === Share.sharedAction) {
+                if (result.activityType) {
+                    // shared with activity type of result.activityType
+                } else {
+                    // shared
+                }
+            } else if (result.action === Share.dismissedAction) {
+                // dismissed
+            }
+        } catch (error) {
+            alert(error.message);
+        }
+    };
 }
 
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
         backgroundColor: '#F5FCFF',
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
         margin: 5,
-        height: 300,
     },
     cardViewStyle: {
         alignSelf: 'stretch',
@@ -83,5 +122,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         height: 200,
         alignSelf: 'stretch',
+    },
+    footerStyle: {
+        flexDirection: 'row',
+        backgroundColor: '#DCDCDC',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        marginTop: 20,
+        bottom: 0,
+        alignSelf: 'stretch',
+        height: 60,
+    },
+    footerImg: {
+        height: 30,
+        width: 30,
     },
 });
