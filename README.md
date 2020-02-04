@@ -1,5 +1,16 @@
 # RN-News
-News app in React Native
+News app in React Native. App fetches top news using RSS link. 
+
+Following libraries are used using npm/yarn:
+Stack Navigator
+NetInfo
+RSS Parser
+Flatlist 
+AsyncStorage
+Splash screen
+Share
+Alert
+
 
 # General Steps for getting new package and linking
 yarn install
