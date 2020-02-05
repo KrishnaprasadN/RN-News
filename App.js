@@ -27,3 +27,5 @@ const AppStackNavigator = createStackNavigator(
 
 // Create App container by passing navigator.
 export default createAppContainer(AppStackNavigator);
+
+
